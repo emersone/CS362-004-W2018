@@ -1,0 +1,249 @@
+Noverse Bug Reporting Template
+Source: http://www.noverse.com/images/noverse-bug-reporting-template.txt
+==============================
+
+Title: BUG #1    
+
+Class: Adventurer card does not function as expected
+
+Date: 4 March 2018           
+Reported By: Elizabeth Emerson   
+Email: emersoel@oregonstate.edu      
+
+
+Product: N/A                    Version:
+Platform: N/A                   Version:
+Browser: N/A                    Version:
+URL: N/A       
+
+Is it reproducible: Yes
+
+Description
+===========
+
+When the Adventurer card is played in dominion.c, the Adventurer card is not discarded. It should
+be moved to the discard pile after it is played, but instead it is kept in the player's hand.
+
+Steps to Produce/Reproduce
+--------------------------
+
+To test the Adventurer card in my teammate's code, I used my randomtestadventurer.c random tester.
+It includes random tests for the the player's handcount (int handCount), deck size (int deckSize),
+and discard pile size (discardSize). The file is included in the browncamDominion folder.
+
+I pulled all of my teammate's dominion files onto the server, in addition to 
+randomtestadventurer.c. I also edited my Makefile to include a rule to run the Adventurer card
+tests. 
+
+To run it, type: make randAdv
+
+The results will be saved in randomtestadventurer.out. This can be examined in VIM, or pulled
+from the server and examined in a test editor (I used Notepadd++). 
+
+The results are in the following format for each test:
+
+---------------
+
+test # 
+
+deckCount:  
+
+discardCount:
+
+handCount: 
+
+Fail! There is a bug in your code. OR Success! All works as expected.
+ (depending on results)
+Fail! There is a bug in your code. OR Success! All works as expected. (depending on results)
+You have drawn cards.
+
+---------------
+
+In the above test, the first message corresponds to the first assert in randomtestadventurer.c, 
+which checks to see if the player's handcount is the expected size. That is, it should have 
+ultimately increased by 1 card after taking into account discarding the Adventurer card.
+
+The second message corresponds to the second assert in randomtestadventurer.c, which checks to
+see if the deck of cards is the expected size (that is, that the player drew the expected number
+of cards). 
+
+Expected Results
+----------------
+
+If there were no bugs in the Adventurer card, then the messages both should have printed "Success!
+All works as expected." 
+
+
+Actual Results
+--------------
+
+In each of the 1,999 random tests, the first test failed and the message printed "Fail! There 
+is a bug in your code." This indicates that the player's handcount is not the expected size, and
+that they never discarded the Adventurer card after it was used. 
+
+Workarounds
+-----------
+
+No. The code would need to be fixed in order to get around this bug.
+
+
+Attachments
+-----------
+
+See randomtestadventurer.out in the browncamDominion folder to view one running of the test.
+
+
+Other Information
+-----------------
+
+None.
+
+=============================================================================================
+=============================================================================================
+=============================================================================================
+
+Title: BUG #2     
+
+Class: Smithy card does not function as expected
+
+Date: 4 March 2018           
+Reported By: Elizabeth Emerson   
+Email: emersoel@oregonstate.edu      
+
+
+Product: N/A                    Version:
+Platform: N/A                   Version:
+Browser: N/A                    Version:
+URL: N/A       
+
+Is it reproducible: Yes
+
+Description
+===========
+
+When the Smithy card is played in dominion.c, the player draws too many cards. It should draw
+3 cards, but the for loop begins at 0 and ends at 3, which means that 4 cards drawn instead.
+
+Steps to Produce/Reproduce
+--------------------------
+
+To test the Smithy card in my teammate's code, I used my cardtest1.c unit test to test it.
+
+I pulled all of my teammate's dominion files onto the server, in addition to 
+cardtest1.c. I also edited my Makefile to include a rule to run the Smithy card
+tests. 
+
+To run it, type: make testSmithy
+
+The results will be saved in unittestresults.out. This can be examined in VIM, or pulled
+from the server and examined in a test editor (I used Notepadd++). Please note that you may 
+need to delete any other .out files on the server to ensure that only the cardtest1.c test
+results show up in unittestresults.out. 
+
+The results are in the following format for each test:
+
+---------------
+
+cardtest1.c:
+
+Begin Smithy Card Test 1: tests implementation INSIDE of cardEffect().
+
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+End Smithy Card Test 1.
+
+
+
+Begin Smithy Card Test 2: tests implementation OUTSIDE of cardEffect().
+
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+
+Success! All works as expected.
+ OR Fail! There is a bug in your code.
+ (depending on results)
+End Smithy Card Test 2.
+
+----------------
+
+For Smithy Card Test 1 (INSIDE of cardEffect()), the results correspond to the following code:
+
+Message 1: checks state of the game in regards to the player's handcount 
+Message 2: checks state of the game in regards to the deckcount
+Message 3: checks that the return value of Smithy is correct
+Message 4: checks that the hand count is as expected
+Message 5: checks that the deck count is as expected
+
+For Smithy Card Test 2 (OUTSIDE of cardEffect()), the results correspond to the following code:
+
+Message 1: checks state of the game in regards to the player's handcount 
+Message 2: checks state of the game in regards to the deckcount
+Message 3: checks that the return value of Smithy is correct
+Message 4: checks that the hand count is as expected
+Message 5: checks that the deck count is as expected
+
+Expected Results
+
+----------------
+If there were no bugs in the Smithy card, then the messages should have all printed "Success!
+All works as expected." 
+
+
+Actual Results
+--------------
+
+The test for Smithy card inside of the cardEffect() function returns "Success" messages for
+tests 1-4, but a "Fail" message for test 5. Test 5, as noted above, corresponds to code that
+checks that the deck count is as expected.
+
+The test for Smith card outside of the cardEffect() functions returns "Success" messages for
+tests 1-2, but a "Fail" message for tests 3-5. Test 3 corresponds to code that checks the
+return value of Smithy, test 4 checks that the hand count is expected, and test 5 checks that
+the deck count is expected.
+
+Therefore, there is absolutely a bug in regards to the expected deck count, regardless of where
+the Smithy card function is located. The other two bugs could indicate that discardCard() in
+dominion.c also has a bug of some sort. 
+
+Workarounds
+-----------
+
+No. The code would need to be fixed in order to get around this bug.
+
+
+Attachments
+-----------
+
+See unittestresults.out in the browncamDominion folder to view one running of the test.
+
+
+Other Information
+-----------------
+
+None.

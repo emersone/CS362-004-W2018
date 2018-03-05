@@ -1,0 +1,17 @@
+cardtest1.c:
+Begin Smithy Card Test 1: tests implementation INSIDE of cardEffect().
+Success! All works as expected.
+Success! All works as expected.
+Success! All works as expected.
+Success! All works as expected.
+Fail! There is a bug in your code.
+End Smithy Card Test 1.
+
+Begin Smithy Card Test 2: tests implementation OUTSIDE of cardEffect().
+Success! All works as expected.
+Success! All works as expected.
+Fail! There is a bug in your code.
+Fail! There is a bug in your code.
+Fail! There is a bug in your code.
+End Smithy Card Test 2.
+

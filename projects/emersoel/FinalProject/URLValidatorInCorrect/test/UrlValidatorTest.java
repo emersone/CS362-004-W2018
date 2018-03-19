@@ -26,10 +26,10 @@ public class UrlValidatorTest extends TestCase {
 	   assertEquals(false, uv.isValid("")); 
 	   assertEquals(true, uv.isValid("google.com")); //FAILS
 	   assertEquals(true, uv.isValid("www.google.com")); //FAILS
-	   assertEquals(true, uv.isValid("http://www.google.com")); //
-	   assertEquals(true, uv.isValid("http://www.google.com:80"));
-	   assertEquals(true, uv.isValid("http://"));
-	   assertEquals(true, uv.isValid("http://www.google.com/test/apple"));	  
+	   assertEquals(true, uv.isValid("http://www.google.com")); 
+	   assertEquals(true, uv.isValid("http://www.google.com:80")); //FAILS
+	   assertEquals(false, uv.isValid("http://")); //FAILS
+	   assertEquals(true, uv.isValid("http://www.google.com/test/apple")); //FAILS	  
 	   assertEquals(true, uv.isValid("http://www.google.com/test"));	   
    }
    

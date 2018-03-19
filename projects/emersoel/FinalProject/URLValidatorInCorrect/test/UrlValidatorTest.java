@@ -69,10 +69,20 @@ public class UrlValidatorTest extends TestCase {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
 
-	   //Loops through tests to find bugs in isValid.
 	   assertEquals(true, uv.isValid("http://www.google.com/test/apple")); //FAILS
 	   assertEquals(false, uv.isValid("http://www.google.com/test//apple")); 
    }
+   
+   
+   //Partition (testing query).
+   public void testQueryPartition() {
+	   //Calls constructor to initialize the UrlValidator.
+	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
+	   
+	   assertEquals(true, uv.isValid("http://www.google.com?first=one")); 
+	   assertEquals(false, uv.isValid("http://www.google.com?first=one, second=two")); 
+   }
+   
    
 
    public void testIsValid()
@@ -175,6 +185,24 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
+   public void testQuery() {
+	   //Calls constructor to initialize the UrlValidator.
+	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
+
+	   //Create array and place elements.
+	   testPair[] tests = {
+			new testPair(true, ""),
+			new testPair(true,"first=one"), 
+			new testPair(true,"first=one,second=two"), 
+			new testPair(false,"first=one, second=two"),
+
+	   };
+	   
+	   //Loops through tests to find bugs in isValid.
+	   for(testPair t: tests) {
+		   assertEquals(t.expected, uv.isValid("http://www.google.com?" + t.arg));
+	   }
+   }
    
    
    

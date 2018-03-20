@@ -1,26 +1,20 @@
-
+//Elizabeth Emerson
+//Cameron Brown
+//CS 362 (Winter 2018)
+//Final Project Part B
 
 import junit.framework.TestCase;
 
-//You can use this as a skeleton for your 3 different test approach
-//It is an optional to use this file, you can generate your own test file(s) to test the target function!
-// Again, it is up to you to use this file or not!
-
-
-
-
 
 public class UrlValidatorTest extends TestCase {
-
 
    public UrlValidatorTest(String testName) {
       super(testName);
    }
 
    
-   
-   public void testManualTest()
-   {
+   //Manually tests URL inputs.
+   public void testManualTest() {
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
 
 	   assertEquals(false, uv.isValid("")); 
@@ -39,8 +33,8 @@ public class UrlValidatorTest extends TestCase {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
 	   
-	   assertEquals(true, uv.isValid("http://www.google.com")); 
-	   assertEquals(false, uv.isValid("ftp://www.google.com")); //FAILS
+	  // assertEquals(true, uv.isValid("http://www.google.com")); //Valid input, passes as expected
+	   assertEquals(false, uv.isValid("adg://www.google.com")); //Invalid input, set to false, yet FAILS 
    }
    
    
@@ -49,8 +43,8 @@ public class UrlValidatorTest extends TestCase {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
 	   
-	   assertEquals(true, uv.isValid("http://www.google.com")); 
-	   assertEquals(false, uv.isValid("http://")); //FAILS
+	   assertEquals(true, uv.isValid("http://www.google.com")); //Valid input, passes as expected
+	   assertEquals(false, uv.isValid("http://")); //Invalid input, set to false, yet FAILS 
    }
    
    
@@ -59,8 +53,8 @@ public class UrlValidatorTest extends TestCase {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
 	   
-	   assertEquals(true, uv.isValid("http://www.google.com:80")); //FAILS
-	   assertEquals(false, uv.isValid("http://www.google.com:a"));
+	   assertEquals(true, uv.isValid("http://www.google.com:80")); //Valid input, FAILS
+	   assertEquals(false, uv.isValid("http://www.google.com:a")); //Invalid input, set to false, passes as expected
    }
    
    
@@ -69,8 +63,8 @@ public class UrlValidatorTest extends TestCase {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
 
-	   assertEquals(true, uv.isValid("http://www.google.com/test/apple")); //FAILS
-	   assertEquals(false, uv.isValid("http://www.google.com/test//apple")); 
+	   assertEquals(true, uv.isValid("http://www.google.com/test/apple")); //Valid input, FAILS
+	   assertEquals(false, uv.isValid("http://www.google.com/test//apple")); //Invalid input, set to false, passes as expected
    }
    
    
@@ -79,14 +73,13 @@ public class UrlValidatorTest extends TestCase {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
 	   
-	   assertEquals(true, uv.isValid("http://www.google.com?first=one")); 
-	   assertEquals(false, uv.isValid("http://www.google.com?first=one, second=two")); 
+	   assertEquals(true, uv.isValid("http://www.google.com?first=one")); //Valid input, passes as expected
+	   assertEquals(false, uv.isValid("http://www.google.com?first=one, second=two")); //Invalid input, set to false, passes as expected
    }
    
-   
 
-   public void testIsValid()
-   {
+   //Tests the isValid() method in the UrlValidator.
+   public void testIsValid() {
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
 
 	   //assertEquals(true, uv.isValid("http://www.google.com:80"));
@@ -94,6 +87,7 @@ public class UrlValidatorTest extends TestCase {
 	   assertEquals(true, uv.isValid("http://www.google.com/test/apple"));
 
    }
+   
    
    //Create class to hold test pairs (expected return value of isValid and the changing part of the URL).
    public class testPair {
@@ -107,9 +101,9 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
+   
    //Tests the scheme part of the UrlValidator.
    public void testScheme() {
-	   
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
 
@@ -129,6 +123,7 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
+   //Tests the authority part of the UrlValidator.
    public void testAuthority() {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
@@ -149,6 +144,7 @@ public class UrlValidatorTest extends TestCase {
    }
    
    
+   //Tests the port part of the UrlValidator.
    public void testPort() {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
@@ -166,6 +162,8 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
+   
+   //Tests the path part of the UrlValidator.
    public void testPath() {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 
@@ -185,6 +183,8 @@ public class UrlValidatorTest extends TestCase {
 	   }
    }
    
+   
+   //Tests the query part fo the UrlValidator.
    public void testQuery() {
 	   //Calls constructor to initialize the UrlValidator.
 	   UrlValidator uv = new UrlValidator(null, null, UrlValidator.ALLOW_ALL_SCHEMES); 

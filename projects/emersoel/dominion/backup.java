@@ -27,7 +27,7 @@ public class UrlValidatorTest extends TestCase {
 	   assertEquals(true, uv.isValid("google.com")); //FAILS
 	   assertEquals(true, uv.isValid("www.google.com")); //FAILS
 	   assertEquals(true, uv.isValid("http://www.google.com")); 
-	   assertEquals(true, uv.isValid("http://www.google.com:80"));
+	   assertEquals(true, uv.isValid("http://www.google.com:80")); //F
 	   assertEquals(true, uv.isValid("http://"));
 	   assertEquals(true, uv.isValid("http://www.google.com/test/apple"));	  
 	   assertEquals(true, uv.isValid("http://www.google.com/test"));	   
